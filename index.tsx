@@ -3,18 +3,18 @@ import { createRoot } from 'react-dom/client';
 
 const games = {
   recommended: [
-    { id: 1, title: 'Adopt Me!', creator: 'DreamCraft', players: '350K', rating: '92%', image: 'https://via.placeholder.com/180x180.png/00A2FF/FFFFFF?text=Adopt+Me' },
-    { id: 2, title: 'Brookhaven RP', creator: 'Wolfpaq', players: '420K', rating: '90%', image: 'https://via.placeholder.com/180x180.png/FF4081/FFFFFF?text=Brookhaven' },
-    { id: 3, title: 'Tower of Hell', creator: 'YXCeptional Studios', players: '120K', rating: '88%', image: 'https://via.placeholder.com/180x180.png/FDD835/000000?text=ToH' },
-    { id: 4, title: 'MeepCity', creator: 'alexnewtron', players: '80K', rating: '85%', image: 'https://via.placeholder.com/180x180.png/4CAF50/FFFFFF?text=MeepCity' },
-     { id: 5, title: 'Piggy', creator: 'MiniToon', players: '75K', rating: '93%', image: 'https://via.placeholder.com/180x180.png/F44336/FFFFFF?text=Piggy' },
+    { id: 1, placeId: 920587237, title: 'Adopt Me!', creator: 'DreamCraft', players: '350K', rating: '92%', image: 'https://via.placeholder.com/180x180.png/00A2FF/FFFFFF?text=Adopt+Me' },
+    { id: 2, placeId: 4924922222, title: 'Brookhaven RP', creator: 'Wolfpaq', players: '420K', rating: '90%', image: 'https://via.placeholder.com/180x180.png/FF4081/FFFFFF?text=Brookhaven' },
+    { id: 3, placeId: 191595229, title: 'Tower of Hell', creator: 'YXCeptional Studios', players: '120K', rating: '88%', image: 'https://via.placeholder.com/180x180.png/FDD835/000000?text=ToH' },
+    { id: 4, placeId: 370731277, title: 'MeepCity', creator: 'alexnewtron', players: '80K', rating: '85%', image: 'https://via.placeholder.com/180x180.png/4CAF50/FFFFFF?text=MeepCity' },
+     { id: 5, placeId: 4623386862, title: 'Piggy', creator: 'MiniToon', players: '75K', rating: '93%', image: 'https://via.placeholder.com/180x180.png/F44336/FFFFFF?text=Piggy' },
   ],
   popular: [
-    { id: 6, title: 'Blox Fruits', creator: 'gamer robot inc.', players: '500K', rating: '94%', image: 'https://via.placeholder.com/180x180.png/9C27B0/FFFFFF?text=Blox+Fruits' },
-    { id: 7, title: 'Pet Simulator X', creator: 'BIG Games Pets', players: '280K', rating: '91%', image: 'https://via.placeholder.com/180x180.png/FF9800/FFFFFF?text=Pet+Sim' },
-    { id: 8, title: 'Murder Mystery 2', creator: 'Nikilis', players: '150K', rating: '89%', image: 'https://via.placeholder.com/180x180.png/607D8B/FFFFFF?text=MM2' },
-    { id: 9, title: 'Royale High', creator: 'callmehbob', players: '95K', rating: '87%', image: 'https://via.placeholder.com/180x180.png/E91E63/FFFFFF?text=Royale+High' },
-    { id: 10, title: 'Welcome to Bloxburg', creator: 'Coeptus', players: '110K', rating: '95%', image: 'https://via.placeholder.com/180x180.png/8BC34A/FFFFFF?text=Bloxburg' },
+    { id: 6, placeId: 2753915549, title: 'Blox Fruits', creator: 'gamer robot inc.', players: '500K', rating: '94%', image: 'https://via.placeholder.com/180x180.png/9C27B0/FFFFFF?text=Blox+Fruits' },
+    { id: 7, placeId: 6284583030, title: 'Pet Simulator X', creator: 'BIG Games Pets', players: '280K', rating: '91%', image: 'https://via.placeholder.com/180x180.png/FF9800/FFFFFF?text=Pet+Sim' },
+    { id: 8, placeId: 142823291, title: 'Murder Mystery 2', creator: 'Nikilis', players: '150K', rating: '89%', image: 'https://via.placeholder.com/180x180.png/607D8B/FFFFFF?text=MM2' },
+    { id: 9, placeId: 744235242, title: 'Royale High', creator: 'callmehbob', players: '95K', rating: '87%', image: 'https://via.placeholder.com/180x180.png/E91E63/FFFFFF?text=Royale+High' },
+    { id: 10, placeId: 185655149, title: 'Welcome to Bloxburg', creator: 'Coeptus', players: '110K', rating: '95%', image: 'https://via.placeholder.com/180x180.png/8BC34A/FFFFFF?text=Bloxburg' },
   ]
 };
 
@@ -134,23 +134,27 @@ const Sidebar = ({ profile, onSync }) => {
   )
 };
 
-const GameCard = ({ title, creator, players, rating, image }) => (
-  <div className="game-card">
-    <div className="game-card-thumbnail" style={{ backgroundImage: `url(${image})` }}>
-        <div className="play-icon">
-            <span className="material-icons">play_arrow</span>
+const GameCard = ({ title, creator, players, image, placeId }) => {
+    const gameUrl = `roblox://placeId=${placeId}`;
+
+    return (
+      <a href={gameUrl} className="game-card">
+        <div className="game-card-thumbnail" style={{ backgroundImage: `url(${image})` }}>
+            <div className="play-icon">
+                <span className="material-icons">play_arrow</span>
+            </div>
         </div>
-    </div>
-    <div className="game-card-info">
-      <h3>{title}</h3>
-      <p>by {creator}</p>
-      <div className="game-stats">
-        <span className="material-icons">group</span>
-        <span>{players}</span>
-      </div>
-    </div>
-  </div>
-);
+        <div className="game-card-info">
+          <h3>{title}</h3>
+          <p>by {creator}</p>
+          <div className="game-stats">
+            <span className="material-icons">group</span>
+            <span>{players}</span>
+          </div>
+        </div>
+      </a>
+    );
+};
 
 const GameCarousel = ({ title, gameList }) => (
     <section className="game-carousel">
